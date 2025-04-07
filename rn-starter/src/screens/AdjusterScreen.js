@@ -3,23 +3,29 @@ import { View, Text, StyleSheet } from 'react-native';
 import ColorCounter from '../components/ColorCounter'
 
 const reducer = (state, action) => {
-  console.log('action: ', action);
+  const MAX = 255;
+  const MIN = 0;
+
+  const handleOutOfBounds = color => {
+    const proposedNewValue = state[color] + action.amount;
+
+    if (proposedNewValue > MAX || proposedNewValue < MIN) {
+      return state;
+    }
+
+    return {
+      ...state,
+      [color]: state[color] + action.amount
+    }
+  }
+
   switch (action.colorToChange) {
     case 'red':
-      return {
-        ...state,
-        red: state.red + action.amount
-      };
+      return handleOutOfBounds('red');
     case 'green':
-      return {
-        ...state,
-        green: state.green + action.amount
-      };
+      return handleOutOfBounds('green');
     case 'blue':
-      return {
-        ...state,
-        blue: state.blue + action.amount
-      };
+      return handleOutOfBounds('blue');
     default:
       return state;
   }
