@@ -19,6 +19,7 @@ const AdjusterScreen = () => {
         }}
       />
       <View style={{ height: 100, width: 100, backgroundColor: `rgb(${colors.Red}, ${colors.Green}, ${colors.Blue})`}} />
+      <Text>Red: {colors.Red}, Green: {colors.Green}, Blue: {colors.Blue}</Text>
     </View>
   );
 };
