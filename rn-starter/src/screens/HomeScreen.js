@@ -5,6 +5,10 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View>
       <Button
+        onPress={() => navigation.navigate('Adjuster')}
+        title="Go to Adjuster Demo"
+      />
+      <Button
         onPress={() => navigation.navigate('Counter')}
         title="Go to Counter Demo"
       />
