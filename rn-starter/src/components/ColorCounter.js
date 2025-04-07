@@ -1,35 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
-const ColorCounter = ({ colors, color, setColors }) => {
-  const MAX = 255;
-  const MIN = 0;
-  const CURRENT_COLOR = colors[color];
-  const INCREMENT = 10;
-
-  const increaseColor = () => {
-    setColors({
-      ...colors,
-      [color]: CURRENT_COLOR + INCREMENT <= MAX ? CURRENT_COLOR + INCREMENT : MAX
-    });
-  };
-
-  const decreaseColor = () => {
-    setColors({
-      ...colors,
-      [color]: CURRENT_COLOR - INCREMENT >= MIN ? CURRENT_COLOR - INCREMENT : MIN
-    });
-  }
-  
+const ColorCounter = ({ color, onIncrease, onDecrease }) => {
   return (
     <View>
       <Text>{color}</Text>
       <Button
-        onPress={increaseColor}
+        onPress={onIncrease}
         title={`Increase ${color}`}
       />
       <Button
-        onPress={decreaseColor}
+        onPress={onDecrease}
         title={`Decrease ${color}`}
       />
     </View>
