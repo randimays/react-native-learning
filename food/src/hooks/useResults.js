@@ -20,7 +20,6 @@ export default () => {
   
       if (response?.data?.businesses) {
         setError('');
-        // console.log('here: ', response.data.businesses[0].name)
         setResults(response.data.businesses);
       }
     } catch (err) {

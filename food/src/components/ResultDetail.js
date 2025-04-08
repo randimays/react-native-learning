@@ -7,7 +7,7 @@ const ResultDetail = ({ result }) => {
   
   return (
     <View style={styles.view}>
-      <Image style={styles.image} source={{ uri: result.image_url }} />
+      <Image style={styles.image} source={{ uri: result.image_url || '' }} />
       <Text style={styles.resultName}>{result.name || 'Restaurant'}</Text>
       <Text>{result.location.address1}</Text>
       <View style={styles.categories}>
