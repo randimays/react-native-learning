@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     minWidth: '100vw',
     minHeight: '100vh',
     zIndex: -1,
+    flex: 1,
   }
 });
 

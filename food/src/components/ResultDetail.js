@@ -1,21 +1,19 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { Image } from 'expo-image';
 
-const Result = ({ result }) => {
-  console.log('result: ', result.image_url);
-    const categories = result?.categories?.length > 0 ? result.categories.map(category => category.title) : null;
-  console.log('categories: ', categories);
+const ResultDetail = ({ result }) => {
+  const categories = result?.categories?.length > 0 ? result.categories.slice(0, 4).map(category => category.title) : null;
+  
   return (
     <View style={styles.view}>
+      <Image style={styles.image} source={{ uri: result.image_url }} />
       <Text style={styles.resultName}>{result.name || 'Restaurant'}</Text>
       <Text>{result.location.address1}</Text>
-      {result.location.address2 && <Text>{result.location.address2}</Text>}
-      {result.location.address3 && <Text>{result.location.address3}</Text>}
-      <Text>{result.location.city}, {result.location.state} {result.location.zip_code}</Text>
       <View style={styles.categories}>
         {categories && categories.map((category, index) => <Text style={styles.category} key={index}>{category}</Text>)}
       </View>
-      {/* <Image source={result.image_url} /> */}
+      <Text>{result.rating} Stars, {result.review_count} Reviews</Text>
     </View>
   );
 };
@@ -25,6 +23,12 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginBottom: 15,
   },
+  image: {
+    width: 250,
+    height: 170,
+    borderRadius: 6,
+    marginBottom: 10,
+  },
   resultName: {
     fontWeight: 'bold',
     fontSize: 18,
@@ -32,17 +36,19 @@ const styles = StyleSheet.create({
   categories: {
     display: 'flex',
     flexDirection: 'row',
+    flexWrap: 'wrap',
     marginTop: 10,
   },
   category: {
     marginRight: 8,
-    backgroundColor: 'cornsilk',
+    marginBottom: 8,
+    backgroundColor: 'mintcream',
     paddingHorizontal: 5,
     paddingVertical: 3,
     borderWidth: 1,
-    borderColor: 'darkgoldenrod',
+    borderColor: 'paleturquoise',
     borderRadius: 4,
   }
 });
 
-export default Result;
+export default ResultDetail;
