@@ -2,7 +2,7 @@ import createDataContext from './createDataContext';
 
 const ADD_BLOG = 'ADD_BLOG';
 const DELETE_BLOG = 'DELETE_BLOG';
-const UPDATE_BLOG = 'UPDATE_BLOG';
+const EDIT_BLOG = 'EDIT_BLOG';
 
 const blogReducer = (state = [], action) => {
   switch (action.type) {
@@ -13,12 +13,13 @@ const blogReducer = (state = [], action) => {
         ...state,
         {
           id: blogKey,
-          title: `Blog Post #${blogKey}`
+          title: action.payload.title,
+          content: action.payload.content,
         }
       ];
     case DELETE_BLOG:
       return [...state.filter(blog => blog.id !== action.payload)];
-    case UPDATE_BLOG:
+    case EDIT_BLOG:
       const blogToUpdate = state.find(blog => blog.title === action.payload)?.[0];
 
       return {
@@ -31,8 +32,16 @@ const blogReducer = (state = [], action) => {
 };
 
 const addBlogPost = dispatch => {
-  return () => {
-    dispatch({ type: ADD_BLOG });
+  return (title, content, callback) => {
+    dispatch({
+      type: ADD_BLOG,
+      payload: {
+        title,
+        content
+      }
+    });
+
+    callback();
   };
 };
 
@@ -42,10 +51,17 @@ const deleteBlogPost = dispatch => {
   };
 }
 
+const editBlogPost = dispatch => {
+  return id => {
+    dispatch({ type: EDIT_BLOG, payload: id });
+  };
+}
+
 export const { Context, Provider } = createDataContext(
   blogReducer, {
     addBlogPost,
     deleteBlogPost,
+    editBlogPost,
   },
   []
 );
