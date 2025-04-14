@@ -1,0 +1,39 @@
+{
+  "blogposts": [
+    {
+      "id": "1",
+      "title": "Test post",
+      "content": "Test content"
+    },
+    {
+      "id": "9ab4",
+      "title": "Here's another",
+      "content": "Waffles"
+    },
+    {
+      "id": "391b",
+      "title": "Yet another",
+      "content": "Ha"
+    },
+    {
+      "title": "5 eeee",
+      "content": "Test ",
+      "id": "1ea7"
+    },
+    {
+      "id": "4ac0",
+      "title": "6",
+      "content": "Here's"
+    },
+    {
+      "id": "2a58",
+      "title": "Add another!",
+      "content": "Yeet"
+    },
+    {
+      "id": "049b",
+      "title": "Ahaaa",
+      "content": "Test"
+    }
+  ]
+}
