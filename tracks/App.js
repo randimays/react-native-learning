@@ -1,7 +1,6 @@
 import React from 'react';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import AccountScreen from './src/screens/AccountScreen';
 import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
@@ -11,19 +10,13 @@ import TrackListScreen from './src/screens/TrackListScreen';
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { setNavigator } from './src/navigationRef';
 
-const switchNavigator = createSwitchNavigator({
-  loginFlow: createStackNavigator({
-    Signup: SignupScreen,
-    Signin: SigninScreen
-  }),
-  mainFlow: createMaterialBottomTabNavigator({
-    trackListFlow: createStackNavigator({
-      TrackDetail: TrackDetailScreen,
-      TrackList: TrackListScreen
-    }),
-    TrackCreate: TrackCreateScreen,
-    Account: AccountScreen,
-  })
+const switchNavigator = createStackNavigator({
+  Signin: SigninScreen,
+  Signup: SignupScreen,
+  TrackDetail: TrackDetailScreen,
+  TrackList: TrackListScreen,
+  TrackCreate: TrackCreateScreen,
+  Account: AccountScreen,
 });
 
 const App = createAppContainer(switchNavigator);
