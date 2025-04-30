@@ -4,12 +4,18 @@ import trackerApi from '../api/tracker';
 import { navigate } from '../navigationRef';
 
 const INITIAL_STATE = {
-  token: null,
-  errorMessage: '',
+  currentLocation: null,
+  locations: [],
+  recording: false,
 };
 
 const locationReducer = (state, action) => {
   switch (action.type) {
+    case 'ADD_LOCATION':
+      return {
+        ...state,
+        currentLocation: action.payload,
+      };
     case 'SIGN_OUT':
     default:
       return state;
@@ -24,31 +30,16 @@ const stopRecording = dispatch => () => {
 
 };
 
-const addLocation = dispatch => () => {
-
-};
-
-const signup = dispatch => async ({ email, password }) => {
-  try {
-    const response = await trackerApi.post('/signup', { email, password });
-    await AsyncStorage.setItem('token', response.data.token);
-    
-    dispatch({ type: 'SIGN_IN', payload: response.data.token });
-
-    navigate('TrackList');
-  } catch (err) {
-    dispatch({ type: 'ADD_ERROR', payload: 'Something went wrong with sign up.'})
-  }
+const addLocation = dispatch => location => {
+  dispatch({ type: 'ADD_LOCATION', payload: location });
 };
 
 export const { Provider, Context } = createDataContext(
-  authReducer,
+  locationReducer,
   {
-    clearErrorMessage,
-    signup,
-    signin,
-    signout,
-    tryLocalSignin,
+    addLocation,
+    startRecording,
+    stopRecording,
   },
   INITIAL_STATE
 );
