@@ -3,15 +3,56 @@ import { Button, View, Text, StyleSheet } from 'react-native';
 import ColorCounter from '../components/ColorCounter';
 
 const SquareScreen = () => {
-  const [red, setRed] = useState(0);
-  const [green, setGreen] = useState(0);
-  const [blue, setBlue] = useState(0);
-  
+  const randomColor = Math.floor(Math.random() * 256);
+  const [red, setRed] = useState(randomColor);
+  const [green, setGreen] = useState(randomColor);
+  const [blue, setBlue] = useState(randomColor);
+  const COLOR_INCREMENT = 5;
+  const COLOR_MAX_VALUE = 255;
+  const COLOR_MIN_VALUE = 0;
+
+  console.log('red: ', red);
+  console.log('green: ', green);
+  console.log('blue: ', blue);
+
+  const onIncrease = (color, setter) => {
+    let newColorValue = color + COLOR_INCREMENT;
+
+    if (newColorValue >= COLOR_MAX_VALUE) {
+      newColorValue = COLOR_MAX_VALUE;
+    }
+
+    setter(newColorValue);
+  };
+
+  const onDecrease = (color, setter) => {
+    let newColorValue = color - COLOR_INCREMENT;
+
+    if (newColorValue <= COLOR_MIN_VALUE) {
+      newColorValue = COLOR_MIN_VALUE;
+    }
+
+    setter(newColorValue);
+  };
+
   return (
     <View>
-      <ColorCounter color="red" />
-      <ColorCounter color="green" />
-      <ColorCounter color="blue" />
+      <ColorCounter
+        onIncrease={() => onIncrease(red, setRed)}
+        onDecrease={() => onDecrease(red, setRed)}
+        color="red"
+      />
+      <ColorCounter
+        onIncrease={() => onIncrease(green, setGreen)}
+        onDecrease={() => onDecrease(green, setGreen)}
+        color="green"
+      />
+      <ColorCounter
+        onIncrease={() => onIncrease(blue, setBlue)}
+        onDecrease={() => onDecrease(blue, setBlue)}
+        color="blue"
+      />
+      <View style={{ height: 150, width: 150, backgroundColor: `rgb(${red}, ${green}, ${blue})` }} />
     </View>
   );
 };
