@@ -1,27 +1,22 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-
-import AdjusterScreen from './src/screens/AdjusterScreen';
-import BoxScreen from './src/screens/BoxScreen';
 import HomeScreen from "./src/screens/HomeScreen";
-import ColorScreen from './src/screens/ColorScreen';
 import ComponentsScreen from './src/screens/ComponentsScreen';
-import CounterScreen from './src/screens/CounterScreen';
 import ImageScreen from './src/screens/ImageScreen';
 import ListScreen from './src/screens/ListScreen';
-import TextScreen from './src/screens/TextScreen';
+import CounterScreen from './src/screens/CounterScreen';
+import ColorScreen from './src/screens/ColorScreen';
+import SquareScreen from './src/screens/SquareScreen';
 
 const navigator = createStackNavigator(
   {
-    Adjuster: AdjusterScreen,
-    Box: BoxScreen,
     Home: HomeScreen,
-    Color: ColorScreen,
     Components: ComponentsScreen,
-    Counter: CounterScreen,
     Image: ImageScreen,
     List: ListScreen,
-    Text: TextScreen,
+    Counter: CounterScreen,
+    Color: ColorScreen,
+    Square: SquareScreen,
   },
   {
     initialRouteName: "Home",

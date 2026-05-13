@@ -1,21 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
-const ImageDetail = ({
-  imageSource,
-  score,
-  title,
-}) => {
-
+const ImageDetail = ({ imageScore, imageSource, title}) => {
   return (
     <View>
       <Image source={imageSource} />
       <Text>{title}</Text>
-      <Text>Score: {score}</Text>
+      <Text>Image Score: {imageScore}</Text>
     </View>
   );
-};
+}
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+
+});
 
 export default ImageDetail;
