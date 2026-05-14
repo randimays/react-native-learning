@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, View, Text, StyleSheet } from 'react-native';
+import { Button, View, Text } from 'react-native';
 import ColorCounter from '../components/ColorCounter';
 
 const SquareScreen = () => {
@@ -52,9 +52,5 @@ const SquareScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-
-});
 
 export default SquareScreen;
