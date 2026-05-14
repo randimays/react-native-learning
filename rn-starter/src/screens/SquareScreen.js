@@ -11,10 +11,6 @@ const SquareScreen = () => {
   const COLOR_MAX_VALUE = 255;
   const COLOR_MIN_VALUE = 0;
 
-  console.log('red: ', red);
-  console.log('green: ', green);
-  console.log('blue: ', blue);
-
   const onIncrease = (color, setter) => {
     let newColorValue = color + COLOR_INCREMENT;
 
